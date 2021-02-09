@@ -56,3 +56,4 @@ Route::delete('messages/{id}', 'App\Http\Controllers\MessageController@delete');
 Route::post('register', 'App\Http\Controllers\Auth\RegisterController@register');
 Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');
 Route::post('logout', 'App\Http\Controllers\Auth\LoginController@logout');
+Route::post('create-school', 'App\Http\Controllers\SchoolController@store');
