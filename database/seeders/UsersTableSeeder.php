@@ -23,8 +23,19 @@ class UsersTableSeeder extends Seeder
         // Let's make sure everyone has the same password and 
         // let's hash it before the loop, or else our seeder 
         // will be too slow.
-        $password = Hash::make('toptal');
+        //seed roles
+        Role::create(['title' => 'Super Admin',]);
+        Role::create(['title' => 'Parent',]);
+        Role::create(['title' => 'Director',]);
+        Role::create(['title' => 'Teacher',]);
+        Role::create(['title' => 'Professor',]);
+        Role::create(['title' => 'Student',]);
+        Role::create(['title' => 'School Staff',]);
+        Role::create(['title' => 'LBPE Staff',]);
+        Role::create(['title' => 'PAS Member',]);
+        Role::create(['title' => 'Visitor',]);
 
+        $password = Hash::make('toptal');
         User::create([
             'name' => 'Administrator',
             'email' => 'admin@test.com',

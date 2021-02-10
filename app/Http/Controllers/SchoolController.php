@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Level;
+use App\Models\School;
 
 class SchoolController extends Controller
 {
@@ -51,17 +52,19 @@ class SchoolController extends Controller
             'levels'=>['required','array','min:1'],
             'levels.*'=>['required','string','max:255'],
         ]);
-    
-       dd ($validator->validated());
-        /* if ($validated->fails()) {
-            echo $validated->errors();
+        if ($validator->fails()) {
+        echo $validator->errors();}
+        else{
+        $school = new School;
+        $school->name = $request->name;
+        $school->type = $request->type;
+        // Retrieve school levels
+        $levelCount = count($request->levels);
+        for ($i = 0; $i < $levelCount-1; $i++){
+        $level = Level::where('name', $request->levels[$i])->first();
+        $school->levels()->attach($level);            
+        }     
         }
-        
-        echo $validator->valid();
-        /*$school = School::create([
-            'name' => $faker->name,
-            'type'=>$type, 
-        ]);*/
     }
 
     /**

@@ -18,7 +18,7 @@ class SchoolSeeder extends Seeder
     {
          // Let's clear the users table first
          School::truncate();
-         Level::truncated();
+         
 
          $faker = \Faker\Factory::create();
          Level::create(['name' => 'Crèche',]); 
