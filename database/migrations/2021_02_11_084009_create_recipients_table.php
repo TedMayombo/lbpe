@@ -21,7 +21,7 @@ class CreateRecipientsTable extends Migration
             $table->foreign('recipient_school')->references('school_id')->on('school_user')->onCascade('delete')->nullable();
             $table->foreign('recipient_pas')->references('pas_id')->on('pas_user')->onCascade('delete')->nullable();
             $table->float('is_read');
-           $table->timestamps();
+            $table->timestamps();
         });
     }
 

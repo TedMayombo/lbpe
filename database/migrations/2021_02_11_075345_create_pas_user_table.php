@@ -15,7 +15,8 @@ class CreatePasUserTable extends Migration
     {
         Schema::create('pas_user', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('pas_id');
         });
     }
 
