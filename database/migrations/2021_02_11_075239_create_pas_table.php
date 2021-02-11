@@ -15,6 +15,7 @@ class CreatePasTable extends Migration
     {
         Schema::create('pas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('school_id');
             $table->foreign('school_id')->references('id')->on('schools');
             $table->timestamps();
         });

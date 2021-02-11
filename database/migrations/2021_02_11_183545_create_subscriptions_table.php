@@ -15,12 +15,13 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps("created_at");
-            $table->timestamps("expiry_date");
+            $table->dateTime("created");
+            $table->dateTime("expiry_date");
             $table->float("amount");
             $table->string("reference");
             $table->string("status");
             $table->boolean("is_active");
+            $table->timestamps();
            
         });
     }

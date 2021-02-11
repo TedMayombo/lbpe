@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassroomUserTable extends Migration
+class CreateClassroomLevelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateClassroomUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('classroom_user', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('classroom_id');
+        Schema::create('classroom_level', function (Blueprint $table) {
+            $table->unsignedBigInteger('level_id');
+            $table->unsignedBigInteger('classroom_id');
         });
     }
 
@@ -27,6 +26,6 @@ class CreateClassroomUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classroom_user');
+        Schema::dropIfExists('classroom_level');
     }
 }

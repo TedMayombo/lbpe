@@ -38,14 +38,7 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        echo 'storing';
-        //store school in database
-        /*$validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'type' => ['required', 'string', 'max:255'],
-            'levels'=>['required','array','min:1'],
-            'levels.*'=>['required','string','max:255'],
-        ]);*/
+        
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string', 'max:255'],
