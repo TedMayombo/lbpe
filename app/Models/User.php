@@ -50,12 +50,11 @@ class User extends Authenticatable
         $this->save();
         return $this->api_token;
     }
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
-    public function schools()
-    {
-        return $this->belongsToMany(School::class);
-    }
+    public function roles(){ return $this->belongsToMany(Role::class);}
+    public function schools(){ return $this->belongsToMany(School::class);}
+    public function classrooms(){ return $this->belongsToMany(Classroom::class);}
+    public function pas(){ return $this->belongsToMany(Pas::class); }
+    public function messages(){ return $this->hasMany(Message::class);}
+    public function subjects(){ return $this->belongsToMany(Subject::class);}
+    public function subscriptions(){ return $this->belongsToMany(Subscription::class);}
 }

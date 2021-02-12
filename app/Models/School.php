@@ -9,6 +9,7 @@ class School extends Model
 {
     use HasFactory;
     protected $fillable = ['name','type',];
+   
     public function users()
     {
         return $this->belongsToMany(User::class);
@@ -16,5 +17,9 @@ class School extends Model
     public function levels()
     {
         return $this->belongsToMany(Level::class);
+    }
+    public function classrooms()
+    {
+        return $this->hasMany(Classroom::class);
     }
 }
