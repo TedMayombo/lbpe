@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Level;
-use App\Models\School;
 use App\Models\Classroom;
 
 class ClassroomController extends Controller
@@ -17,7 +16,7 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -38,6 +37,8 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
+        
+        echo "hey";
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'school_id' => ['required', 'integer'],
@@ -50,8 +51,9 @@ class ClassroomController extends Controller
         $classroom->name = $request->name;
         $classroom->school_id = $request->school_id;
         // Retrieve classroom level
-        $level = Level::where('id', $request->level)->first();
-        $classroom->levels()->attach($level);               
+       // $level = Level::where('id', $request->level)->first();
+        //$classroom->levels()->attach($level); 
+        $classroom->save();                
         }
     }
 

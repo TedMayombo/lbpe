@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -34,7 +36,18 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'body' => ['required', 'text'],
+            'message_id' => ['required', 'integer'],
+        ]);
+        if ($validator->fails()) {
+        echo $validator->errors();}
+        else{
+        $comment = new Comment;
+        $comment->body = $request->body;
+        $comment->message_id = $request->message_id; 
+        $comment->save();           
+        }
     }
 
     /**

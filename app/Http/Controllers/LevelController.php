@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Level;
 
 class LevelController extends Controller
 {
@@ -23,7 +25,7 @@ class LevelController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -34,7 +36,16 @@ class LevelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'name','max:255'],
+        ]);
+        if ($validator->fails()) {
+        echo $validator->errors();}
+        else{
+        $level = new Level;
+        $level->name = $request->name;
+        $level->save();       
+        }
     }
 
     /**

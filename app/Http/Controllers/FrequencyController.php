@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Frequency;
 
 class FrequencyController extends Controller
 {
@@ -34,7 +36,20 @@ class FrequencyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => ['required', 'string','max:255'],
+            'frequency' => ['required', 'string','max:255'],
+            'is_active' => ['boolean'],
+        ]);
+        if ($validator->fails()) {
+        echo $validator->errors();}
+        else{
+        $frequency = new Frequency;
+        $frequency->title = $request->title;
+        $frequency->frequency = $request->frequency; 
+        $frequency->is_active = true; 
+        $frequency->save();          
+        }
     }
 
     /**
