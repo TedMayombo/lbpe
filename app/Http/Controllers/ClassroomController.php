@@ -38,7 +38,6 @@ class ClassroomController extends Controller
     public function store(Request $request)
     {
         
-        echo "hey";
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'school_id' => ['required', 'integer'],
@@ -51,9 +50,10 @@ class ClassroomController extends Controller
         $classroom->name = $request->name;
         $classroom->school_id = $request->school_id;
         // Retrieve classroom level
-       // $level = Level::where('id', $request->level)->first();
-        //$classroom->levels()->attach($level); 
-        $classroom->save();                
+        $level = Level::where('id', $request->level)->first();
+        $classroom->save();
+        $classroom = Classroom::find($classroom->id); 
+        $classroom->levels()->attach($level);                
         }
     }
 

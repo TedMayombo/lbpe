@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
-class UsersTableSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         // Let's clear the users table first
-        User::truncate();
+       
 
         $faker = \Faker\Factory::create();
 
@@ -38,8 +38,8 @@ class UsersTableSeeder extends Seeder
         $password = Hash::make('toptal');
         User::create([
             'name' => 'Administrator',
-            'email' => 'admin@test.com',
-            'password' => $password,
+            'email' => 'mayomboted2@gmail.com',
+            'password' => 'Jtemmao@2008',
         ]);
 
         // And now let's generate a few dozen users for our app:
