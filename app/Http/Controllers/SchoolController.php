@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Level;
 use App\Models\School;
+use Illuminate\Support\Facades\Auth;
 
 class SchoolController extends Controller
 {
@@ -38,7 +39,9 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        
+        if (Auth::check()) { echo "connected";}
+        else{echo " No ways";}
+        $school = new School;
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'type' => ['required', 'string', 'max:255'],
@@ -46,16 +49,18 @@ class SchoolController extends Controller
             'levels.*'=>['required','string','max:255'],
         ]);
         if ($validator->fails()) {
-        echo $validator->errors();}
+        echo $validator->errors();
+        return $validator->errors();
+        }
         else{
-        $school = new School;
         $school->name = $request->name;
         $school->type = $request->type;
         // Retrieve school levels
         $levelCount = count($request->levels);
         for ($i = 0; $i < $levelCount-1; $i++){
         $level = Level::where('name', $request->levels[$i])->first();
-        $school->levels()->attach($level);            
+        $school->levels()->attach($level); 
+        return $school;           
         }     
         }
     }
