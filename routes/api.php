@@ -60,3 +60,4 @@ Route::post('create-school', 'App\Http\Controllers\SchoolController@store');
 Route::post('create-classroom', 'App\Http\Controllers\ClassroomController@store');
 Route::post('store-comment', 'App\Http\Controllers\CommentController@store');
 Route::post('store-frequency', 'App\Http\Controllers\FrequencyController@store');
+
