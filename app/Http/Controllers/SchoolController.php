@@ -39,7 +39,11 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::check()) { echo "connected";}
+        if (Auth::check()) { 
+            $user = auth()->user();
+            print_r($user);
+
+        }
         else{echo " No ways";}
         $school = new School;
         $validator = Validator::make($request->all(), [

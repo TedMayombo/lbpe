@@ -54,10 +54,13 @@ Route::post('messages', 'App\Http\Controllers\MessageController@store');
 Route::put('messages/{id}', 'App\Http\Controllers\MessageController@update');
 Route::delete('messages/{id}', 'App\Http\Controllers\MessageController@delete');
 Route::post('register', 'App\Http\Controllers\Auth\RegisterController@register');
-Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');
+
 Route::post('logout', 'App\Http\Controllers\Auth\LoginController@logout');
 Route::post('create-school', 'App\Http\Controllers\SchoolController@store');
 Route::post('create-classroom', 'App\Http\Controllers\ClassroomController@store');
 Route::post('store-comment', 'App\Http\Controllers\CommentController@store');
 Route::post('store-frequency', 'App\Http\Controllers\FrequencyController@store');
 
+Route::group(['middleware' => ['api']], function () {
+    Route::post('login', 'App\Http\Controllers\Auth\LoginController@login');  
+});
